@@ -1,0 +1,16 @@
+.TexteGlossaire { font-family:'Times New Roman'; font-style:normal; font-weight:normal; font-size:12pt; text-align:justify; margin-top:0; margin-right:0.5cm; margin-bottom:0; margin-left:0.5cm; }
+.EntréeGlossaire { font-family:Verdana; font-style:normal; font-weight:bold; font-size:13pt; color:rgb(204,0,51); }
+.EntreeGlossaire { font-family:Verdana; font-style:normal; font-weight:bold; font-size:13pt; color:rgb(204,0,51); }
+.Introduction { font-family:'Arial Rounded MT Bold'; font-size:12pt; color:rgb(0,153,51); text-align:justify; margin-top:0cm; margin-right:1cm; margin-bottom:0cm; margin-left:1cm; }
+.Centre { font-family:'Times New Roman'; font-size:13pt; color:red; text-align:center; margin-right:2cm; margin-left:2cm; }
+.PetitCentre { font-family:'Times New Roman'; font-size:12pt; margin-bottom:10pt; margin-top:14pt; text-align:center; }
+.Droite { font-family:'Times New Roman'; font-size:12pt; text-align:right; }
+.Gauche { font-family:'Times New Roman'; font-size:12pt; text-align:justify; margin-top:0cm; margin-right:0.5cm; margin-bottom:0cm; margin-left:0cm; }
+.Tutoriel { font-family:'Arial'; font-style:normal; font-weight:bold; font-size:14pt; text-align:center; margin-top:0; margin-right:0cm; margin-bottom:0; margin-left:0cm; }
+.Note { font-family:'Times New Roman'; font-size:10pt; text-align:justify; margin-top:0cm; margin-right:5cm; margin-bottom:0.5cm; margin-left:0cm; }
+.Titre1 { font-family:'Verdana'; font-style:italic; font-weight:bold; font-size:11pt; text-align:left; text-indent:15pt; text-decoration:underline; margin-top:35; margin-right:0.5cm; margin-bottom:10; margin-left:0.5cm; }
+.Titre2 { font-family:Arial; font-style:italic; font-weight:normal; font-size:11pt; text-align:left; text-indent:40pt; text-decoration:underline;  margin-bottom:10; margin-top:20; }
+.TM1 { font-family:'Times New Roman'; font-weight:bold; font-size:12pt; margin-top:12pt; margin-bottom:0pt; color:red; }
+.TM2 { font-family:Arial; font-weight:bold; font-size:9.5pt; color:rgb(0,102,0); margin-top:0.5cm; margin-bottom:0.3cm; text-indent:0.6cm; line-height:2pt; }
+.TM3 { font-family:'Times New Roman'; font-size:11pt; font-style:italic; font-weight:bold; color:black; margin-top:0.2cm; margin-bottom:0cm; text-indent:1.2cm; }
+.TM4 { font-family:'Verdana'; font-weight:bold; font-size:8pt; color:black; margin-top:0.1cm; margin-right:0cm; margin-bottom:0cm; text-indent:2cm; }

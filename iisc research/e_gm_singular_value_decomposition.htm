@@ -1,0 +1,599 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="generator" content="Namo WebEditor v5.0">
+<!-- base href="http://www.aiaccess.net/English/Glossaries/GlosMod/e_gm_singular_value_decomposition.htm" -->
+<meta name="author" content="AI ACCESS">
+
+<meta name="description" content="Training course in statistics and data modeling">
+
+<link rel="stylesheet" href="e_gm_singular_value_decomposition_files/style_glossaire.css">
+
+
+<title>Singular Value Decomposition (SVD)</title>
+<meta name="keywords" content="singular value, singular vector, singular value decompostion, decomposition, spectral decomposition">
+<script language="JavaScript">
+<!--
+function na_preload_img()
+{ 
+  var img_list = na_preload_img.arguments;
+  if (document.preloadlist == null) 
+    document.preloadlist = new Array();
+  var top = document.preloadlist.length;
+  for (var i=0; i < img_list.length; i++) {
+    document.preloadlist[top+i] = new Image;
+    document.preloadlist[top+i].src = img_list[i+1];
+  } 
+}
+
+function na_change_img_src(name, nsdoc, rpath, preload)
+{ 
+  var img = eval((navigator.appName.indexOf('Netscape', 0) != -1) ? nsdoc+'.'+name : 'document.all.'+name);
+  if (name == '')
+    return;
+  if (img) {
+    img.altsrc = img.src;
+    img.src    = rpath;
+  } 
+}
+
+function na_restore_img_src(name, nsdoc)
+{
+  var img = eval((navigator.appName.indexOf('Netscape', 0) != -1) ? nsdoc+'.'+name : 'document.all.'+name);
+  if (name == '')
+    return;
+  if (img && img.altsrc) {
+    img.src    = img.altsrc;
+    img.altsrc = null;
+  } 
+}
+
+// -->
+</script>
+</head>
+
+<body onload="na_preload_img(false, '../../cliparts/bt_home_2.gif', '../../cliparts/bt_index_2.gif', '../../cliparts/bt_tutorials_2.gif', '../../cliparts/bt_training_2.gif', '../../cliparts/bt_contact_2.gif', '../../cliparts/bt_index2.gif');" text="black" vlink="purple" alink="red" bgcolor="white" link="blue">
+
+<div id="layer1" style="background-image:url('../../cliparts/banner.gif'); width:1007px; height:61px; position:absolute; left:0px; top:0px; z-index:1;">
+    <p>&nbsp;</p>
+</div>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<table align="center" border="0" height="35">
+     <tbody><tr>
+        <td width="120" align="center" height="35">
+            <p><a href="http://www.aiaccess.net/English/home.htm" target="_top" onmouseout="na_restore_img_src('bouton_home', 'document')" onmouseover="na_change_img_src('bouton_home', 'document', '../../cliparts/bt_home_2.gif', true);"><img src="e_gm_singular_value_decomposition_files/bt_home_1.gif" name="bouton_home" width="100" border="0" height="22"></a></p>
+        </td>
+        <td width="120" align="center" height="35">
+            <p><a href="http://www.aiaccess.net/e_gm.htm" onmouseout="na_restore_img_src('image4', 'document')" onmouseover="na_change_img_src('image4', 'document', '../../cliparts/bt_index_2.gif', true);" target="_top"><img src="e_gm_singular_value_decomposition_files/bt_index_1.gif" name="image4" width="100" border="0" height="22"></a></p>
+        </td>
+        <td width="120" align="center" height="35">
+            <p><a href="http://www.aiaccess.net/x_tutor_list.htm" onmouseout="na_restore_img_src('tutorial2', 'document')" onmouseover="na_change_img_src('tutorial2', 'document', '../../cliparts/bt_tutorials_2.gif', true);" target="_top"><img src="e_gm_singular_value_decomposition_files/bt_tutorials_1.gif" name="tutorial2" width="100" border="0" height="22"></a></p>
+        </td>
+        <td width="120" align="center" height="35">
+            <p><a href="http://www.aiaccess.net/e_train.htm" target="_top" onmouseout="na_restore_img_src('bouton_formations', 'document')" onmouseover="na_change_img_src('bouton_formations', 'document', '../../cliparts/bt_training_2.gif', true);"><img src="e_gm_singular_value_decomposition_files/bt_training_1.gif" name="bouton_formations" width="100" border="0" height="22"></a></p>
+        </td>
+        <td width="120" align="center" height="35">
+            <p><a href="mailto:aiaccess@aol.com" onmouseout="na_restore_img_src('image3', 'document')" onmouseover="na_change_img_src('image3', 'document', '../../cliparts/bt_contact_2.gif', true);"><img src="e_gm_singular_value_decomposition_files/bt_contact_1.gif" name="image3" width="100" border="0" height="22"></a></p>
+        </td>
+    </tr>
+</tbody></table>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="EntreeGlossaire">&nbsp;</p>
+<p class="EntreeGlossaire"><a href="http://www.aiaccess.net/English/Glossaries/GlosMod/e_gm_Sa_Seg.htm"><img src="e_gm_singular_value_decomposition_files/bt_whitewave_back.gif" width="27" border="0" height="27"></a></p>
+<p class="EntreeGlossaire">Singular Value Decomposition</p>
+<p class="TexteGlossaire">A matrix is just a table of numbers from which it 
+is difficult to extract the information that is relevant&nbsp;for solving&nbsp;the 
+problem at hand. A general and powerful strategy for revealing the salient features 
+of a matrix is to decompose (or "factor") it into a product of other 
+simpler&nbsp;matrices whose characteristics can be clearly identified and interpreted.</p>
+<p class="TexteGlossaire">We already saw three examples of this approach :</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* The <a href="http://www.aiaccess.net/English/Glossaries/GlosMod/e_gm_symmetric_matrix.htm#Spectral%20decomposition">spectral 
+decompostion</a> of a symmetric matrix.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* The <a href="http://www.aiaccess.net/English/Glossaries/GlosMod/e_gm_cholesky.htm">Cholesky</a> 
+factorisation of a positive semidefinite matrix.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* The <a href="http://www.aiaccess.net/English/Glossaries/GlosMod/e_gm_normal_form_matrix.htm">normal 
+form</a> of any matrix.</p>
+<h1 class="Titre1">The full Singular Value Decompostion</h1>
+<p class="TexteGlossaire">The most general and possibly most useful factorization 
+of a matrix is the <b>Singular Value Decomposition</b> (SVD), which can be stated 
+as follows :</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* Let <b><i>A</i></b> be <b>any</b>&nbsp;<i>m</i><font size="2">x</font><i>n</i> 
+matrix of rank <i>r</i>. Then there exist :</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+A <i>m</i><font size="2">x</font><i>m</i>&nbsp;orthogonal matrix <b><i>U</i></b>,</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+A <i>n</i><font size="2">x</font><i>n</i>&nbsp;orthogonal matrix <b><i>V</i></b>,</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+And a <i>m</i><font size="2">x</font><i>n</i>&nbsp;(same size as <b><i>A</i></b>)&nbsp;pseudo-diagonal 
+matrix (all off diagonal elements are 0, but the matrix is not 
+square) <img src="e_gm_singular_value_decomposition_files/s_sigma_maj.gif" width="18" border="0" height="20">,</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">such that :</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<table bordercolordark="white" bordercolorlight="black" class="PetitCentre" width="401" align="center" border="1" cellspacing="0">
+    <tbody><tr>
+        <td width="395"><p class="PetitCentre"><b><i>A = U </i></b><img src="e_gm_singular_value_decomposition_files/s_sigma_maj.gif" width="18" border="0" height="20"><b><i>V'</i></b> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or equivalently &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>U'AV 
+= </i></b><img src="e_gm_singular_value_decomposition_files/s_sigma_maj.gif" width="18" border="0" height="20"></p>
+        </td>
+    </tr>
+</tbody></table>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">This decompostion may be represented as :</p>
+<p class="PetitCentre"><img src="e_gm_singular_value_decomposition_files/svd_full.gif" width="332" border="0" height="120">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">This figure&nbsp;illustrates the case <i>r &lt;</i> <i>n &lt; m</i>, 
+but the decomposition is also&nbsp;valid for&nbsp;<i>m <img src="e_gm_singular_value_decomposition_files/s_pluspetitouegal.gif" width="12" border="0" height="15"> n</i>, and for 
+<i>r</i> = min(<i>m, n</i>) (that is when <b><i>A</i></b> is full rank).</p>
+<p class="TexteGlossaire">-----</p>
+<p class="TexteGlossaire">The "diagonal" of <img src="e_gm_singular_value_decomposition_files/s_sigma_maj.gif" width="18" border="0" height="20">&nbsp;is 
+contains the <b><i>singular values</i></b> of <b><i>A</i></b>. They are real, 
+non negative numbers. We assume that the rows of <b><i>U</i></b> and the&nbsp;columns 
+of&nbsp;<b><i>V'</i></b> 
+have been reordered so that the singular values appear by decreasing&nbsp;order 
+of&nbsp; values as one crawls&nbsp;down the diagonal.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* The upper part (red strip) 
+contains the <b>positive</b> singular values. We'll <a href="#Tut_1_demonstration" target="_self">show</a> 
+that :</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+There are <i>r</i> positive singular values, where <i>r</i> is the rank of <b><i>A</i></b>. 
+So the rank of a matrix is revealed by the number of its positive singular values.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+Each positive singular value is equal to the positive square root of one of 
+the eigenvalues of <b><i>A'A</i></b>&nbsp;(or <b><i>AA' </i></b>).</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* The lower part of the diagonal 
+(gray strip) contains 
+the (<i>n - r</i>)&nbsp;0, or "vanishing", singular values. <a name="REDUCED DECOMPOSITION"></a></p>
+<h1 class="Titre1">Reduced Singular Value Decomposition</h1>
+<p class="TexteGlossaire"><img src="e_gm_singular_value_decomposition_files/s_sigma_maj.gif" width="18" border="0" height="20">&nbsp;contains 
+mostly 0s, and this suggests that there should exist another version of SVD 
+with most of the 0s discarded. It is indeed the case, and&nbsp;the "reduced" 
+Singular Value Decompostion is as follows :</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="PetitCentre"><img src="e_gm_singular_value_decomposition_files/svd_reduced.gif" width="298" border="0" height="135"></p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">or :</p>
+<p class="PetitCentre"><b><i>A = U</i></b><sub>1</sub><img src="e_gm_singular_value_decomposition_files/s_delta_maj.gif" width="12" border="0" height="14"><b><i>V'</i></b><sub>1</sub></p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">It is obtained simply by :</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* Amputating <b><i>U</i></b> 
+of its (<i>m - r</i>) rightmost columns.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* Amputating <b><i>V</i></b> 
+of its (<i>n - r</i>) rightmost columns (and therefore <b><i>V'</i></b> of its 
+&nbsp;(<i>n - r</i>) lowest rows).</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* Keeping the square&nbsp;upper-left 
+part of <img src="e_gm_singular_value_decomposition_files/s_sigma_maj.gif" width="18" border="0" height="20">&nbsp;containing 
+the strictly positive&nbsp;singular values, and discarding the rest. The result is 
+the <img src="e_gm_singular_value_decomposition_files/s_delta_maj.gif" width="12" border="0" height="14">&nbsp;matrix 
+in the above illustration.</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">This reduced&nbsp;form is equivalent to the full SVD, 
+which is obtained from the reduced form  :</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* By adding (<i>m - r</i>) columns 
+to <b><i>U</i></b><sub>1</sub>. These columns have to be&nbsp;orthonormal vectors 
+that are also 
+orthogonal to the columns of <b><i>U</i></b><sub>1</sub> so as to make&nbsp;the 
+complete <b><i>U</i></b> an orthogonal matrix.&nbsp;They can be built, for instance, 
+by resorting to&nbsp;the Gram-Schmidt orthonormalization procedure. We'll show 
+that, except for this orthonormality constraint, the actual choice of these 
+complementary vectors does not affect the validity of the full&nbsp;decomposition, 
+which is therefore not unique.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* Similarly, by adding (<i>n - r</i>) orthonormal 
+vectors to the <i>r</i> (orthonormal) rows&nbsp;of <b><i>V'</i></b><sub>1</sub>.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* By converting <img src="e_gm_singular_value_decomposition_files/s_delta_maj.gif" width="12" border="0" height="14">&nbsp;into 
+<img src="e_gm_singular_value_decomposition_files/s_sigma_maj.gif" width="18" border="0" height="20">&nbsp;by 
+appropriately 
+padding it with 0s.</p>
+<p class="TexteGlossaire">-----</p>
+<p class="TexteGlossaire">It can be shown that the reduced Singular Value Decomposition 
+is <b>unique</b> (up to the signs of the singular vectors)&nbsp;if and only if all 
+the positive singular values are distinct.</p>
+<h1 class="Titre1">Singular values and singular vectors</h1>
+<p class="TexteGlossaire">When a matrix&nbsp;<b><i>A</i></b> is not square, the concepts 
+of eigenvector and eigenvalue are meaningless, but they can be generalized by 
+the concepts of <b>singular vector</b> and <b>singular value.</b></p>
+<p class="TexteGlossaire">A positive number <i>s</i> is said to be a <b>singular value</b> of <b><i>A</i></b> 
+is there exist&nbsp;:</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* A vector <b><i>u</i></b> in 
+<i>R<sup>n</sup></i>&nbsp;, &nbsp;and</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;A vector <b><i>v</i></b> in <i>R<sup>m</sup></i>, 
+</p>
+<p class="TexteGlossaire">such that :</p>
+<table class="PetitCentre" bordercolordark="white" bordercolorlight="black" width="256" align="center" border="1" cellspacing="0">
+    <tbody><tr>
+        <td width="250"><p class="PetitCentre"><b><i>Av</i></b>&nbsp;= &nbsp;<i>s<b>u</b></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>A'u</i></b>&nbsp;= &nbsp;<i>s<b>v</b></i></p>
+        </td>
+    </tr>
+</tbody></table>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* <b><i>u</i></b> is said 
+to be a <b>left</b> singular vector.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* <b><i>v</i></b> is said 
+to be a <b>right</b> singular vector.<a name="squared singular value"></a></p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">We'll show that :</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<table bordercolordark="white" bordercolorlight="black" class="PetitCentre" width="592" align="center" border="1" cellspacing="0">
+    <tbody><tr>
+        <td width="586">
+            <p class="PetitCentre"><b><i>* </i></b>A left singular vector<b><i> u</i></b> is an eigenvector of <b><i>AA'</i></b>&nbsp;associated 
+            to the eigenvalue <i>s</i>².</p>
+            <p class="PetitCentre">* A right&nbsp;singular vector <b><i>v</i></b> is an eigenvector of <b><i>A'A</i></b>&nbsp;associated 
+            to the eigenvalue <i>s</i>².</p>
+        </td>
+    </tr>
+</tbody></table>
+<p class="TexteGlossaire">&nbsp;</p>
+<h1 class="Titre1">Geometric interpretations of the Singular Value Decomposition</h1>
+<p class="TexteGlossaire">Singular Value Decomposition receives several geometric 
+interpretations that make its somewhat abstract architecture somewhat more comprehensible. 
+We now give two of these interpretations.</p>
+<h2 class="Titre2">Mechanism &nbsp;of a linear operator</h2>
+<p class="TexteGlossaire">Any <i>m</i><font size="2">x</font><i>n</i> matrix 
+can be regarded as the matrix implementation of a linear operator from <i>R<sup>n</sup></i>&nbsp;into 
+<i>R<sup>m</sup></i>.</p>
+<p class="TexteGlossaire">Consider the SVD of <b><i>A</i></b> :</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* As <b><i>U</i></b> is orthogonal, 
+its columns&nbsp;form an orthonormal basis of <i>R<sup>m</sup></i>.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* As <b><i>V</i></b> is orthogonal, 
+its columns (the rows of <b><i>V' </i></b>) form an orthonormal basis of <i>R<sup>n</sup></i>.</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">The expression <b><i>Av</i></b>&nbsp;= 
+&nbsp;<i>s<b>u</b></i>&nbsp;&nbsp;(see above) receives a geometric interpretation 
+: the image in <i>R<sup>m</sup></i>&nbsp;of a right 
+singular vector (in <i>R<sup>n</sup></i>) is equal to <i>s</i> 
+times the left singular vector associated to the singular value <i>s</i>. </p>
+<p class="TexteGlossaire">Let then <b><i>x</i></b> be a vector of <i>R<sup>n</sup></i>. 
+For simplicity, we assume <b><i>A</i></b> to be full rank, say <i>n</i> ( <img src="e_gm_singular_value_decomposition_files/s_pluspetitouegal.gif" width="12" border="0" height="15"> 
+<i>m</i>).</p>
+<p class="TexteGlossaire">Then to obtain <b><i>Ax</i></b>, take the following 
+steps :</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* First project <b><i>x</i></b> 
+on the orthonormal basis of <i>R<sup>n</sup></i>&nbsp;embodied 
+by the columns of <b><i>V</i></b> (right singular vectors). The values of these 
+projections are the coordinates of <b><i>x</i></b> in this basis.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* Then multiply ("stretch")&nbsp;each 
+of these <i>n</i> 
+coordinates  by the corresponding singular 
+value of <b><i>A</i></b>.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* Use these numbers as  
+coordinates on the first&nbsp;<i>n</i> left singular vectors in <i>R<sup>m</sup></i>&nbsp;(<i>i.e.</i> 
+the first <i>n</i> columns of <b><i>U </i></b>). You thus define a vector <b><i>y</i></b>.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* Set the remaining (<i>m 
+- n</i>) last coordinates of <b><i>y</i></b>&nbsp;(on the (<i>m - n</i>) last 
+columns of <b><i>U</i></b>) to 0.</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">Then&nbsp;<b><i>y</i></b> is equal to <b><i>Ax</i></b>.</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">The following&nbsp;figure illustrates this process 
+on the first coordinate <i><font face="Arial">v</font></i><sub>1</sub>&nbsp;of 
+a vector <b><i>x</i></b> (with <i>n</i> = 2 and <i>m</i> = 3).</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="PetitCentre"><img src="e_gm_singular_value_decomposition_files/svd_principle.gif" width="648" border="0" height="220"></p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">For any vector <b><i>x</i></b>, the third coordinate 
+in <i>R</i><sup>3</sup>&nbsp;(on <b><i>u</i></b><sub>3 
+</sub>) will always be 0. But it&nbsp;is so only because of the very particular 
+choice of&nbsp;a basis in <i>R</i><sup>3</sup>&nbsp;(<i>i.e.</i> the columns 
+of <b><i>U</i></b>).</p>
+<p class="Note"><br>We leave it to the reader to decide&nbsp;how this 
+interpretation should be amended&nbsp;:<br> &nbsp;&nbsp;&nbsp;* If &nbsp;<i>m &lt; n</i>.<br> 
+&nbsp;&nbsp;&nbsp;* If <b><i>A</i></b> is not 
+full rank.&nbsp;</p>
+<p class="TexteGlossaire">-----</p>
+<p class="TexteGlossaire">This geometric interpretation helps to understand 
+the exact roles of the <b><i>U</i></b><sub>1</sub> and <b><i>V</i></b><sub>1</sub>&nbsp;of 
+the reduced form. We do not assume <b><i>A</i></b> to be full rank anymore.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* Let's put bases and&nbsp;matrices 
+aside for a moment, and rather&nbsp;focus on the concept of "linear operator 
+from <i>R<sup>n</sup></i>&nbsp;to <i>R<sup>m</sup></i>&nbsp;".</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+The set of vectors in <i>R<sup>n</sup></i>&nbsp;which are transformed into the 
+null vector of&nbsp;<i>R<sup>m</sup></i>&nbsp;is a subspace of <i>R<sup>n</sup></i>&nbsp;called 
+the <b>kernel</b> of the operator.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+The set of the transformed vectors of <i>R<sup>n</sup></i>&nbsp;is a certain 
+subspace of <i>R<sup>m</sup></i>&nbsp;called the <b>range</b> of the operator. 
+The dimension of the range is at most <i>n</i>, but it may be strictly smaller&nbsp;than 
+<i>n</i>. In other words, the dimension of the range of an operator may be less 
+than the dimension of the original space : linear operators may "crush" 
+dimensions. The dimension of the range is called the <b>rank</b> of the operator.</p>
+<p class="TexteGlossaire">It can be shown that :</p>
+<p class="PetitCentre"><i>dim</i>(Range) + <i>dim</i>(Kernel) = <i>n</i> </p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;- Any vector in <i>R<sup>n</sup></i>&nbsp;can 
+be decomposed in a unique way into the sum of a vector in the kernel, and of 
+a vector in the orthogonal complement of the kernel (the subspace of the vectors 
+that are orthogonal to all the vectors in the kernel), that we denote (Kernel)<font size="5" face="WP MathA"><sup>z</sup></font>. A 
+vector in <i>R<sup>n</sup></i>&nbsp;clearly has the same transform as its projection 
+on (Kernel)<font size="5" face="WP MathA"><sup>z</sup></font>, which is therefore 
+the only "active" subspace of <i>R<sup>n</sup></i> : the operator 
+is completely&nbsp;defined by its action on (Kernel)<font size="5" face="WP MathA"><sup>z</sup></font>, 
+which is sent in a one-to-one way onto (Range).</p>
+<p class="TexteGlossaire">Any basis of (Kernel)<font size="5" face="WP MathA"><sup>z</sup></font>&nbsp;and 
+any basis of (Range) can then be used to define the operator in matrix form.</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* But what the reduced form 
+of SVD says is that there exist&nbsp;:</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+A&nbsp;<b>certain</b>&nbsp;orthonormal basis of (Kernel)<font size="5" face="WP MathA"><sup>z</sup></font>&nbsp;(of 
+dimension <i>r</i>), embodied by the columns of <b><i>V</i></b><sub>1</sub>,</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+And a <b>certain</b> orthonormal basis of (Range) (also of dimension <i>r</i>), 
+embodied by the columns of <b><i>U</i></b><sub>1</sub>,</p>
+<p class="PetitCentre">such that the action of the operator on any vector <b><i>x</i></b> 
+takes the particularly simple form :</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+Project <b><i>x</i></b> on the <b><i>V</i></b><sub>1</sub>&nbsp;basis of (Kernel)<font size="5" face="WP MathA"><sup>z</sup></font>.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+Multiply the <i>r</i> coordinates thus obtained by the corresponding singular 
+values (which are non vanishing).</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+Use these new values as the coordinates of <b><i>Ax</i></b> in the <b><i>U</i></b><sub>1</sub>&nbsp;basis&nbsp;of 
+(Range).</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+If you want the full SVD, just add vectors to the foregoing bases in any way 
+that will preserve their orthonormality, and add 0s to the coordinates 
+of the transform of <b><i>x</i></b>.</p>
+<p class="TexteGlossaire">-----</p>
+<p class="TexteGlossaire">So the reduced SVD gives a complete description of&nbsp;the 
+mechanism of a linear operator both analytically and functionally. It is truly 
+the core of SVD, the full form being just the&nbsp;padded version of the reduced 
+SVD.</p>
+<h2 class="Titre2">Transformation of the unit sphere</h2>
+<p class="TexteGlossaire">In <i>R<sup>n</sup></i>, consider the set of all vectors 
+of length 1 : the tips of these vectors form the <i>n</i>-dimensional&nbsp;<b>unit 
+sphere</b> (see illustration below).</p>
+<p class="TexteGlossaire">It can be shown that the tips of the <b><i>A</i></b>-transformed 
+vectors :</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* Are on a <i>r</i>-dimensional 
+<b>ellipsoid</b>.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* The directions of the&nbsp;principal 
+axes of this ellipsoid are the columns of <b><i>U</i></b><sub>1</sub>&nbsp;(whose 
+antecedents are the columns of <b><i>V</i></b><sub>1 </sub>).</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* The half-lengths of these 
+principal axes are the singular values of <b><i>A</i></b>.</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="PetitCentre"><img src="e_gm_singular_value_decomposition_files/svd_ellipse.gif" width="506" border="0" height="220"></p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire"><a name="Eckart-Young"></a></p>
+<h1 class="Titre1">SVD and Eckart-Young Theorem</h1>
+<p class="TexteGlossaire">By expanding the reduced SVD of a matrix <b><i>A</i></b>, 
+one obtains :</p>
+<p class="PetitCentre"><b><i>A = <img src="e_gm_singular_value_decomposition_files/s_somme.gif" width="17" border="0" height="20"></i></b><i><sub>i</sub></i><b><i>&nbsp;&nbsp;</i></b><i>s<sub>i</sub><b>u</b><sub>i</sub><b>v'</b><sub>i</sub></i> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>i</i> = 1, 2, 
+..., <i>r</i></p>
+<p class="TexteGlossaire">with the singular values sorted by decreasing values.</p>
+<p class="Note"><br>Note the similarity with the expansion of the <a href="http://www.aiaccess.net/English/Glossaries/GlosMod/e_gm_symmetric_matrix.htm#Spectral%20decomposition">spectral</a> 
+decomposition of a symmetric matrix.</p>
+<p class="TexteGlossaire">Every outer product <i><b>u</b><sub>i</sub><b>v'</b><sub>i</sub></i>&nbsp;is 
+a rank 1 matrix.</p>
+<p class="TexteGlossaire">Suppose that the above sum is truncated so that only 
+the first <i>k</i> (<i>k &lt; r</i>) terms are retained. Then it can be shown 
+that :</p>
+<p class="PetitCentre"><b><i>A<sup>*</sup> = <img src="e_gm_singular_value_decomposition_files/s_somme.gif" width="17" border="0" height="20"></i></b><i><sub>i</sub></i><b><i>&nbsp;&nbsp;</i></b><i>s<sub>i</sub><b>u</b><sub>i</sub><b>v'</b><sub>i</sub></i> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>i</i> 
+= 1, 2, ..., <i>k</i></p>
+<p class="TexteGlossaire">is the <b>best</b> approximation of <b><i>A</i></b> 
+in the least-squares sense by a rank <i>k</i> matrix. No other <i>m</i><font size="2">x</font><i>n</i> 
+matrix of rank <i>k</i> can make the quadratic&nbsp;"approximation error"&nbsp;:</p>
+<p class="PetitCentre"><b><i><img src="e_gm_singular_value_decomposition_files/s_somme.gif" width="17" border="0" height="20"></i></b><i><sub>i</sub></i><b><i><img src="e_gm_singular_value_decomposition_files/s_somme.gif" width="17" border="0" height="20"></i></b><i><sub>j</sub></i>&nbsp;&nbsp;&nbsp;| 
+<i>a</i><b><i><sup>*</sup></i></b><i><sub>ij</sub></i> - <i>a<sub>ij </sub></i>|²</p>
+<p class="TexteGlossaire">smaller.</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">This result is known as the <b>Eckart-Young</b> theorem. 
+It is the basis of a method for compressing the information in a data matrix 
+<b><i>A</i></b> (which is then considered as a data table and not as a linear 
+operator). <a name="SVD and pd matrices"></a></p>
+<h1 class="Titre1">SVD and positive semidefinite matrices</h1>
+<p class="TexteGlossaire">The <a href="http://www.aiaccess.net/English/Glossaries/GlosMod/e_gm_symmetric_matrix.htm#Spectral%20decomposition">spectral</a> 
+decomposition of a positive semidefinite matrix <i>A</i><b> is :</b></p>
+<p class="PetitCentre"><b><i>A = UDU'</i></b> </p>
+<p class="TexteGlossaire">where :</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* <b><i>U</i></b> is an orthogonal 
+matrix.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* <b><i>D</i></b> is the diagonal 
+matrix whose diagonal elements are the (non negative) eigenvalues of <b><i>A</i></b>.</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">The spectral decomposition of <b><i>A</i></b> is then 
+identical to its Singular Value Decomposition. For the diagonal elements of 
+<b><i>D</i></b> are indeed the positive square roots of the eigenvalues of <b><i>A'A</i></b>, 
+which are themselves the squares of the eigenvalues of <b><i>A</i></b>.</p>
+<p class="TexteGlossaire">So :</p>
+<table class="PetitCentre" bordercolordark="white" bordercolorlight="black" width="565" align="center" border="1" cellspacing="0">
+    <tbody><tr>
+        <td width="559">
+            <p class="PetitCentre">The SVD of a positive semidefinite matrix 
+            is identical to its spectral decomposition.</p>
+        </td>
+    </tr>
+</tbody></table>
+<p class="Note"><br>This is not true of any symmetric matrix because then some 
+eigenvalues might be negative.</p>
+<h1 class="Titre1">Applications of the Singular Value Decomposition</h1>
+<p class="TexteGlossaire">SVD is a truly universal tool.</p>
+<p class="TexteGlossaire">In this site, SVD will be put to work in Principal 
+Components Analysis (<a href="http://www.aiaccess.net/tutor_preview/english/e_pca.htm">PCA</a>) 
+and in <a href="http://www.aiaccess.net/English/Glossaries/GlosMod/e_gm_ridge.htm">Ridge Regression</a>. But it is almost indispensible 
+whenever it is needed to&nbsp;:</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* Calculate the <b>rank</b> 
+of a matrix, which is then the number of non 0 singular values.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* Identify the null <b>space</b> 
+of a matrix : it is clearly&nbsp;the subspace of <i>R<sup>n</sup></i>&nbsp;spanned 
+by the (<i>n - r</i>)&nbsp;right singular vectors corresponding to the&nbsp;vanishing 
+singular values. These vectors form an orthonormal base of the null space of 
+<b><i>A</i></b>.</p>
+<p class="TexteGlossaire">&nbsp;&nbsp;&nbsp;&nbsp;* Identify the <b>range</b> 
+of a matrix (the subspace spanned by its&nbsp;columns) : it is clearly the subspace 
+of <i>R<sup>m</sup></i>&nbsp;spanned by the <i>r</i>&nbsp;left 
+singular vectors corresponding to non 0 singular values. These vectors form 
+an orthonormal base of the range of <b><i>A</i></b>.</p>
+<h1 class="Titre1">Normal form of a matrix</h1>
+<p class="TexteGlossaire">Formally similar to, but less ambitious than&nbsp;Singular Value Decomposition&nbsp;is 
+the factorization of a matrix into a&nbsp;so-called <b><i>normal form</i></b>. 
+Simpler than&nbsp;SVD, it also&nbsp;captures less information about the matrix 
+as only its <b>rank</b> is revealed by this factorizarion.</p>
+<p class="TexteGlossaire">The factorization of a matrix into a normal form 
+is addressed <a href="http://www.aiaccess.net/English/Glossaries/GlosMod/e_gm_normal_form_matrix.htm">here</a>.</p>
+<p class="PetitCentre">__________________________________________________________</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire"><a name="Tut_1_demonstration"></a></p>
+<table width="82" border="0">
+    <tbody><tr>
+        <td style="border-width: 2px 0pt; border-top: 2px solid rgb(204, 0, 0); border-bottom: 2px solid rgb(204, 0, 0);" width="76">
+            <p class="Tutoriel">Tutorial</p>
+        </td>
+    </tr>
+</tbody></table>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">The truly difficult part&nbsp;about SVD was to invent&nbsp;it. 
+Once it is known to&nbsp;exist, it is not too difficult to demonstrate that 
+indeed any matrix can be decomposed in the SVD form. This is what we do in this 
+Tutorial (except for the uniqueness of the reduced form iff all singular values are distinct). So, 
+although certainly not trivial, this demonstration is a low price to pay&nbsp;for 
+such a powerful and universal result.</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="PetitCentre"><b><u>SINGULAR VALUE DECOMPOSITION</u></b></p>
+<table bordercolordark="white" bordercolorlight="black" width="375" align="center" border="0" cellspacing="0">
+    <tbody><tr>
+        <td colspan="3" style="padding: 5px; border-width: 1px; border-color: black; border-style: solid;" valign="top" width="363" bgcolor="#FFFFCC">
+            <p class="TM1">The full Singular Value Decomposition</p>
+            <p class="TM2">Singular values and singular vectors</p>
+            <p class="TM2">Defining <b><i>V</i></b></p>
+            <p class="TM2">Defining <b><i>U</i></b></p>
+            <p class="TM3">The range of A</p>
+            <p class="TM3">Completing U</p>
+            <p class="TM1">The reduced Singular Value Decomposition</p>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top" width="277" bgcolor="white" height="14">
+
+        </td>
+        <td valign="middle" width="72" align="center" bgcolor="#CCFFFF" height="14">
+
+            <p align="center"><b><span style="font-size:9pt;"><font color="blue">TUTORIAL</font></span></b></p>
+        </td>
+        <td valign="middle" width="20" align="center" bgcolor="#CCFFFF" height="14">
+
+            <p align="center"><a href="http://www.aiaccess.net/x_tut_list_math.htm#SVD"><img src="e_gm_singular_value_decomposition_files/bt_anired10_next.gif" width="20" border="0" height="20"></a></p>
+        </td>
+    </tr>
+</tbody></table>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">___________________________________________________</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire"><b>Related readings :</b></p>
+<div align="left">
+    <table width="360" border="0">
+        <tbody><tr>
+            <td width="354" align="center" height="38"><table bordercolordark="white" bordercolorlight="black" width="289" border="1" cellspacing="0">
+    <tbody><tr>
+        <td width="252" height="30">
+                            <p class="TexteGlossaire">Principal Components Analysis</p>
+        </td>
+        <td width="27" height="30">
+
+            <p align="center"><a href="http://www.aiaccess.net/tutor_preview/english/e_pca.htm"><img src="e_gm_singular_value_decomposition_files/bt_anired10_next.gif" width="20" border="0" height="20"></a></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="252" height="29">
+                            <p class="TexteGlossaire">Ridge Regression</p>
+        </td>
+        <td width="27" height="29">
+
+            <p align="center"><a href="http://www.aiaccess.net/English/Glossaries/GlosMod/e_gm_ridge.htm"><img src="e_gm_singular_value_decomposition_files/bt_anired10_next.gif" width="20" border="0" height="20"></a></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="252" height="30">
+                            <p class="TexteGlossaire">Cholesky factorization</p>
+        </td>
+        <td width="27" height="30">
+
+            <p align="center"><a href="http://www.aiaccess.net/English/Glossaries/GlosMod/e_gm_cholesky.htm"><img src="e_gm_singular_value_decomposition_files/bt_anired10_next.gif" width="20" border="0" height="20"></a></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="252" height="30">
+            <p class="TexteGlossaire">Spectral decomposition</p>
+        </td>
+        <td width="27" height="30">
+
+            <p align="center"><a href="http://www.aiaccess.net/English/Glossaries/GlosMod/e_gm_symmetric_matrix.htm#Spectral%20decomposition"><img src="e_gm_singular_value_decomposition_files/bt_anired10_next.gif" width="20" border="0" height="20"></a></p>
+        </td>
+    </tr>
+                    <tr>
+        <td width="252" height="30">
+                            <p class="TexteGlossaire">Normal form of a matrix</p>
+        </td>
+        <td width="27" height="30">
+
+            <p align="center"><a href="http://www.aiaccess.net/English/Glossaries/GlosMod/e_gm_normal_form_matrix.htm"><img src="e_gm_singular_value_decomposition_files/bt_anired10_next.gif" width="20" border="0" height="20"></a></p>
+        </td>
+                    </tr>
+</tbody></table>
+            </td>
+        </tr>
+    </tbody></table>
+</div>
+<div align="right">
+    <table width="27" border="0" height="27">
+        <tbody><tr>
+            <td>
+                <p align="center"><a href="http://www.aiaccess.net/English/Glossaries/GlosMod/e_gm_slope.htm" title="Slope in Simple Linear Regression"><img src="e_gm_singular_value_decomposition_files/bt_whitewave_next.gif" width="27" border="0" height="27"></a></p>
+            </td>
+        </tr>
+    </tbody></table>
+<table width="199" border="0">
+        <tbody><tr>
+            <td width="160" height="31">
+                <p align="right"><font face="Verdana"><b><span style="font-size:8pt;">Download this Glossary</span></b></font></p>
+            </td>
+            <td width="29" height="31">
+
+                <p align="center"><a href="http://www.aiaccess.net/English/Glossaries/Shop/bookstore.htm" target="_top"><img src="e_gm_singular_value_decomposition_files/bt_anired10_next.gif" width="20" border="0" height="20"></a></p>
+            </td>
+        </tr>
+    </tbody></table>
+    
+    <table bordercolordark="white" bordercolorlight="black" width="144" border="0" cellspacing="0">
+        <tbody><tr>
+            <td valign="middle" width="142" align="center" height="32">
+                <p><a href="http://www.aiaccess.net/e_gm.htm" target="_top" onmouseout="na_restore_img_src('bt_index_bottom', 'document')" onmouseover="na_change_img_src('bt_index_bottom', 'document', '../../cliparts/bt_index2.gif', true);"><img src="e_gm_singular_value_decomposition_files/bt_index1.gif" name="bt_index_bottom" width="100" border="0" height="22"></a></p>
+            </td>
+        </tr>
+        <tr>
+            <td valign="middle" width="142" align="center" height="36">
+                <p><a href="http://www.aiaccess.net/x_tutor_list.htm" target="_top" onmouseout="na_restore_img_src('bt_tutorials__bottom', 'document')" onmouseover="na_change_img_src('bt_tutorials__bottom', 'document', '../../cliparts/bt_tutorials_2.gif', true);"><img src="e_gm_singular_value_decomposition_files/bt_tutorials_1.gif" name="bt_tutorials__bottom" width="100" border="0" height="22"></a></p>
+            </td>
+        </tr>
+    </tbody></table>
+</div>
+<p class="TexteGlossaire" align="right">&nbsp;</p>
+<table width="294" align="center" border="0">
+        <tbody><tr>
+            <td width="239" height="31">
+                <p align="right"><font face="Verdana"><b><span style="font-size:9pt;">Want 
+            to contribute to this site ?</span></b></font></p>
+            </td>
+            <td width="45" height="31">
+<p align="center"><a href="http://www.aiaccess.net/English/Glossaries/GlosMod/z_contribute.htm" target="_top" title="Bring your own contribution !"><img src="e_gm_singular_value_decomposition_files/bt_anigreen07_next.gif" width="20" border="0" height="20"></a></p>
+            </td>
+        </tr>
+    </tbody></table>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">&nbsp;</p>
+<p class="TexteGlossaire">&nbsp;</p>
+
+
+
+</body></html>
