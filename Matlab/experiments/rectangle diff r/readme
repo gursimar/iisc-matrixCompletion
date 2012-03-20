@@ -1,0 +1,6 @@
+this folder contains variation of starting matrix...
+Most results in root folder is found using the following code lines
+
+
+        u_approx_missing = randint (a(1),r,2);
+        v_approx_missing = randint (r,a(2),2);
