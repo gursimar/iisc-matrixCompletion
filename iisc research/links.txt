@@ -1,0 +1,13 @@
+http://www.albertauyeung.com/mf.php
+http://www.ams.org/samplings/feature-column/fcarc-svd
+http://www.miislita.com/information-retrieval-tutorial/svd-lsi-tutorial-4-lsi-how-to-calculations.html
+http://alias-i.com/lingpipe/demos/tutorial/svd/read-me.html
+http://sifter.org/~simon/journal/20061211.html
+http://www.miislita.com/information-retrieval-tutorial/svd-lsi-tutorial-1-understanding.html
+
+http://public.lanl.gov/mewall/kluwer2002.html
+http://en.wikipedia.org/wiki/Singular_value_decomposition#Applications_of_the_SVD
+https://cwiki.apache.org/MAHOUT/dimensional-reduction.html
+
+
+http://www.ams.org/samplings/feature-column/fcarc-svd

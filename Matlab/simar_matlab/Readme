@@ -1,0 +1,12 @@
+rectangle
+svd_compr - Matrix factorization in dense matrix using frobinius norm (rectangle)
+svd_compr_2 - Matrix factorization using frobinius norm in sparse matrix (rectangle) and dense matrix
+
+circle
+svd_compr_3 - Matrix factorsization (svd_compr_2) on random ones...
+svd_compr_4 - Matrix factorization in circle and symmetric characteristics of users and movies latent feature matirx
+svd_compr_5 - Deviation from the original matrix with increasing sparseness... monticarlo simulations
+
+svd_compr_6 - monticarlo (svd_compr_5) with rectangle
+
+
