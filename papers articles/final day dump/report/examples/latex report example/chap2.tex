@@ -1,0 +1,133 @@
+\chapter{Formulas and theorems}\label{sec:formulas}
+Each main chapter or section should start with a short description of
+what it holds, and why. Top tip --- begin the whole writing enterprise
+with a first draft of this little bit for each chapter. It will force
+you to think about overall structure.
+\par
+Here we get going with mathematics and show firstly some simple
+equations and then some that are slightly less simple. Then there's a
+theorem whose proof is relegated to an appendix, followed by some
+numbered results.
+%
+\section{Plain}
+Here's an inline formula: \(E=mc^2\), and here's the same
+thing displayed:\[E=mc^2.\]A matrix needs to be displayed:
+\[  \det\left(\begin{array}{cc}
+        a & b \\  c & d \\
+      \end{array}\right) = ad-bc,   \]
+and here's a result that's displayed and labelled:
+\begin{equation}\label{eq:display}
+\lim_{a\to\infty}\int_0^a\exp(-x^2)\,dx=\fr12\sqrt\pi.
+\end{equation}Note the punctuation in eq.~(\ref{eq:display}) \etc,
+which recognises that displayed equations are parts of sentences.
+\par
+Note also that a smaller (\verb+\textstyle+) size of numerical fraction
+is often useful in a displayed equation. The appropriate
+\verb+\newcommand+ called \verb+\fr+ is defined in the
+\Quote{preamble}, in file \texttt{report.tex}.
+\par
+More complicated limits on \verb+\int+ (and \verb+\sum+) need to
+be enclosed in braces $\{\cdots\}$.
+\par
+In an inline formula, avoid ugly fractions such as \(v=\frac st\) and
+\(\frac{dy}{dx}=x+y\). It looks much better to write \(v=s/t\) and
+\(dy/dx=x+y\). That is, keep \verb+\frac+ for
+display:\[\frac{dy}{dx}=x+y\]where it belongs.
+\par
+Beware of inadvertent blank lines in your \texttt{.tex} file; they often
+creep in immediately after a displayed equation. A blank line gives a
+new paragraph, usually indented, which may not be what you want. You can 
+avoid blank lines altogether by breaking paragraphs with \verb+\par+
+instead, as done here.
+%
+\section{Fancy}
+Now an equation on several lines using \verb+align+:
+\begin{align*}
+  |\vec A|^2 &= a_1^2+a_2^2  \\
+             &= \sin^2\theta+\cos^2\theta \\
+             &= 1
+\end{align*}--- where the star on \verb+align*+ suppresses
+all line-numbering\footnote{And re-phrase material where any displayed
+equation splits between pages.}.
+\par
+Again, with just one line numbered for reference:
+\begin{equation}
+\begin{aligned}
+  |\vec A|^2 &= a_1^2+a_2^2  \label{line-one}\\
+             &= \sin^2\theta+\cos^2\theta \\
+             &= 1 
+\end{aligned}
+\end{equation}
+Now you can refer to equation~(\ref{line-one}).
+\par
+If you want to number the equations in Chapter 2 as (2.1), (2.2), etc,
+then\footnote{Top tip: easily find out about any \LaTeX\ command by
+putting it \textit{with} its backslash (and perhaps the word \lq latex')
+into your favourite search engine.} put \lq\verb+\numberwithin+' into
+\textsl{Google} or see \cite[Sec 8.2.14]{MG}.
+\par
+Notice that in equations you use \verb+\lim+, \verb+\exp+, \verb+\sin+
+and \verb+\cos+ and not plain $lim$, $exp$, $sin$ and $cos$. See
+\cite[Sec.~3.3]{NSS} for a list.
+\par
+For a lot of complicated multi-line formulas it's better to use the more
+sophisticated display environments provided by the package
+\texttt{amsmath} --- see Sec.~8.2 of \comp\ \cite{MG}.
+For instance the \texttt{cases} environment is used to get
+\[\theta(x)=\begin{cases}0&\text{if $x<0$,}\\
+		1&\text{if $x>0$.}\end{cases}\]
+And if you need continued fractions, instead of 
+\[x=\frac{1}{a_2+\frac{1}{a_3+\frac{1}{a_4+\cdots}}},\]a better-looking
+result
+is\[x=\frac{\strut1}{\displaystyle a_2+\frac{\strut1}{\displaystyle
+a_3+\frac{\strut1}{\displaystyle a_4+\cdots}}},\]for which
+\texttt{amsmath}
+provides the command \verb+\cfrac+ \cite[Sec.~8.4.2]{MG}.
+\par
+The package \texttt{amssymb} \cite[Chap.~8]{MG} extends the range of
+mathematical symbols (\eg\(\mathbb{R}\), \(\mathbb{Z}\) and
+\(\mathbb{N}\) are available).
+\par
+And its sister \texttt{amstext} provides the command \verb+\text+ to
+put words into a displayed equation \[ \text{like this: }E=mc^2. \]Note
+that you need to put in by hand the spacing between the text and the
+mathematical symbols.
+%
+\section{Theorems}\label{angels}
+This is theorem~\ref{angels}.
+\begin{description}
+\item[Theorem]: The whole is greater than the sum of its parts.
+\item[Proof:] See App.~\ref{app:proofs}, Sec.~\ref{pf:angels}.
+\end{description}
+For numbered theorems, use \verb+\newtheorem+ \cite[Sec.~3.8]{NSS}.
+\par
+Here's the main sequence of theorems.
+\newtheorem{Main}{Theorem} % this could go into the preamble
+\begin{Main}[my first result]
+The first theorem, showing
+\[ \bar D^n\quad\text{and}\quad\bar{D^n} \]
+where the first bar is over just the \lq D\rq\ and the second is over
+the whole expression. Also the word \lq and\rq\ is inside displayed
+maths, using \verb+\text+ with extra space before and after.
+\end{Main}And that's how to do left and right quotation marks, too,
+with \verb+\lq+ and \verb+\rq+.
+\begin{Main}
+The second theorem --- with \verb+\overline+ inline: $\overline{D^n}$.
+\end{Main}
+\begin{Main} the third theorem\end{Main}
+Here's another sequence of results.
+\newtheorem{second}{Lemma} % this too could go into the preamble
+\begin{second}[my second result]
+The next result (a mere lemma) \dots\end{second}
+\begin{second}\dots\ and the next\end{second}
+\comp\ \cite[Sec.~3.3.3]{MG} describes how to use the
+packages \texttt{amsmath} and \texttt{amsthm} to state (and
+cross-reference) theorems, lemmas, definitions, proofs, \etc\ in a more 
+sophisticated way.
+%
+\section{Summary}
+Each chapter should end with a round-up of its contents and a link
+with the contents of the next.
+\par
+After formulas, equations and theorems, the next important
+topics are graphics and tables.

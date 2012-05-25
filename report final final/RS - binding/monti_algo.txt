@@ -1,0 +1,17 @@
+To generate
+
+For 1 to mc_itr
+	For 1 to l_lim
+		Assign k_list = Randomly choosen k locations of matrix M
+		Hide those k locations by assigning them value of 32
+		Initialize U and V of MC using factorization method as u_approx_missing and v_approx_missing
+		set FRO_NORM_MISSING = 999
+		Repeat until FRO_NORM_MISSING>fro_th
+			Assign FRO_NORM_MISSING =0
+			Compute M_approx_missing using MC using factorization method using only non hidden values.
+		END
+		Compute RMSE difference using sum(sum(M_approx_missing - M).^2))
+	END
+END
+
+Plot the results

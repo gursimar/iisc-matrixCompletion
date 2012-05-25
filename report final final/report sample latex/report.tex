@@ -1,0 +1,48 @@
+\documentclass[a4paper,11pt]{report}
+%
+%--------------------   start of the 'preamble'
+%
+\usepackage{graphicx,amssymb,amstext,amsmath}
+%
+%%    homebrew commands -- to save typing
+\newcommand\etc{\textsl{etc}}
+\newcommand\eg{\textsl{eg.}\ }
+\newcommand\etal{\textsl{et al.}}
+\newcommand\Quote[1]{\lq\textsl{#1}\rq}
+\newcommand\fr[2]{{\textstyle\frac{#1}{#2}}}
+\newcommand\miktex{\textsl{MikTeX}}
+\newcommand\comp{\textsl{The Companion}}
+\newcommand\nss{\textsl{Not so Short}}
+%
+%---------------------   end of the 'preamble'
+%
+\begin{document}
+%-----------------------------------------------------------
+\title{A short accurate title}
+\author{Author's name}
+\maketitle
+%-----------------------------------------------------------
+\begin{abstract}\centering
+A couple of sentences on three or four lines to summarise your work.\\ 
+This is a \LaTeX\ template for undergraduate project reports.\\
+Its detailed contents evolve to reflect FAQs.
+\end{abstract}
+%-----------------------------------------------------------
+\tableofcontents
+%-----------------------------------------------------------
+\include{chap1}
+\include{chap2}
+\include{chap3}
+\include{chap4}
+%-----------------------------------------------------------
+\addcontentsline{toc}{chapter}{\numberline{}Bibliography}
+\include{biblio}
+%-----------------------------------------------------------
+\appendix
+\include{app4}
+\include{app1}
+\include{app2}
+\include{app5}
+\include{app3}
+%-----------------------------------------------------------
+\end{document}

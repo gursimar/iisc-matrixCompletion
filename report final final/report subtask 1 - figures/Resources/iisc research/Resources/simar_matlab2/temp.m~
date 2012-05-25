@@ -1,0 +1,10 @@
+figure
+M = 64 * ones (100,1000)
+image (M)
+o = 0:0.01:2*pi;
+r = 100;
+M(50,50)=32;
+M(int8(500+r*cos(o)),int8(500+r*sin(o)))=0;
+M(50,50)=32;
+
+image(M)

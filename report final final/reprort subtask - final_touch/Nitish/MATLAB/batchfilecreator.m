@@ -1,0 +1,12 @@
+figure(1)
+steep_cg_normal_dim(10);
+figure(2)
+steep_cg_normal_dim(100);
+figure(3)
+steep_cg_normal_dim(500);
+figure(4)
+steep_cg_vander_dim(10);
+figure(5)
+steep_cg_vander_dim(100);
+figure(6)
+steep_cg_vander_dim(500);

@@ -1,0 +1,11 @@
+To genereate partially revealed matrix with a fixed number of missing entries k,
+Let M be the original matrix which consist of desired pattern of binary values (either a circle or rectangle in this case).
+
+If we consider a matrix with linear indexing, choosing k numbers in range [1 total_entries(M)] without replacement and assigning them a value of 32 (in this case) will lead us to M_missing
+
+To form the matrix M_missing
+
+1. Randomly pertutate a list of numbers from 1 to total_entries(M)
+2. Choose first k numbers out the newly permutated list and assign them in a array k_list.
+3. Assign M_missing = M
+4. Assign M_missing(k_list) = 32

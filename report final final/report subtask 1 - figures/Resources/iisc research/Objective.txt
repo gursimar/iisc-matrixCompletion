@@ -1,0 +1,4 @@
+Generate figures
+
+1. use dia
+2. 
