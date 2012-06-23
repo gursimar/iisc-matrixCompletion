@@ -1,0 +1,23 @@
+1. room call
+2. NA
+3. Algorithms
+4. basic computational physics
+
+
+
+summer intern bel labs
+
+
+
+20-26
+	MIT Videos graphs
+	some basic graph programs
+	graphs-matrix
+	linear algebra
+	NA
+	IIT Bombay
+
+
+http://drona.csa.iisc.ernet.in/~vijayn/courses/TopoForVis/index.html
+http://drona.csa.iisc.ernet.in/~vijayn/courses/DAV/index.html
+http://drona.csa.iisc.ernet.in/~vijayn/courses/Graphics/index.html
